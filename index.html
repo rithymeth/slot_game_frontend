@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enhanced Slot Machine Game with New Features</title>
+    <!-- Include Animate.css for basic animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Include GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive Design -->
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <!-- Authentication Container -->
+    <div id="auth-container">
+        <div id="register-form">
+            <h2>Register</h2>
+            <input type="text" id="register-username" placeholder="Username" aria-label="Username">
+            <input type="password" id="register-password" placeholder="Password" aria-label="Password">
+            <button id="register-button" aria-label="Register">Register</button>
+            <p id="register-message"></p>
+        </div>
+        <div id="login-form">
+            <h2>Login</h2>
+            <input type="text" id="login-username" placeholder="Username" aria-label="Username">
+            <input type="password" id="login-password" placeholder="Password" aria-label="Password">
+            <button id="login-button" aria-label="Login">Login</button>
+            <p id="login-message"></p>
+        </div>
+    </div>
+
+    <!-- Slot Machine Game -->
+    <div class="slot-machine" role="main">
+        <h1>Enhanced Slot Machine Game</h1>
+        <p>Balance: $<span id="balance">0</span></p>
+        <p>Jackpot: $<span id="jackpot">0</span></p>
+        <div class="theme-selector">
+            <label for="theme">Select Theme:</label>
+            <select id="theme" aria-label="Select Theme">
+                <option value="classic">Classic</option>
+                <option value="space">Space</option>
+                <option value="underwater">Underwater</option>
+            </select>
+        </div>
+        <!-- Settings Button -->
+        <button id="settings-button" aria-label="Settings">⚙️</button>
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+            <div class="modal-content">
+                <h2 id="settings-title">Settings</h2>
+                <label>
+                    <input type="checkbox" id="sound-toggle" checked>
+                    Sound Effects
+                </label>
+                <label>
+                    <input type="checkbox" id="music-toggle" checked>
+                    Background Music
+                </label>
+                <button id="close-settings" aria-label="Close settings">Close</button>
+            </div>
+        </div>
+        <div class="reels-container">
+            <div class="reels" id="reel1">
+                <div class="symbol">🍒</div>
+                <div class="symbol">🍒</div>
+                <div class="symbol">🍒</div>
+            </div>
+            <div class="reels" id="reel2">
+                <div class="symbol">🍋</div>
+                <div class="symbol">🍋</div>
+                <div class="symbol">🍋</div>
+            </div>
+            <div class="reels" id="reel3">
+                <div class="symbol">🍊</div>
+                <div class="symbol">🍊</div>
+                <div class="symbol">🍊</div>
+            </div>
+            <div class="reels" id="reel4">
+                <div class="symbol">🍉</div>
+                <div class="symbol">🍉</div>
+                <div class="symbol">🍉</div>
+            </div>
+            <div class="reels" id="reel5">
+                <div class="symbol">🍇</div>
+                <div class="symbol">🍇</div>
+                <div class="symbol">🍇</div>
+            </div>
+        </div>
+        <div class="controls">
+            <label for="bet-amount">Bet Amount: $</label>
+            <input type="number" id="bet-amount" value="10" min="1" max="1000" aria-label="Bet Amount">
+            <!-- Bet Multipliers -->
+            <div class="bet-multipliers">
+                <button class="bet-multiplier" data-multiplier="1">x1</button>
+                <button class="bet-multiplier" data-multiplier="2">x2</button>
+                <button class="bet-multiplier" data-multiplier="5">x5</button>
+                <button class="bet-multiplier" data-multiplier="10">x10</button>
+                <button id="max-bet-button">Max Bet</button>
+            </div>
+        </div>
+        <button id="spin-button" aria-label="Spin the slot machine">Spin</button>
+        <p id="message" aria-live="polite"></p>
+
+        <!-- Achievements -->
+        <div id="achievements">
+            <h3>Achievements</h3>
+            <ul id="achievements-list"></ul>
+        </div>
+
+        <!-- Sound Effects -->
+        <audio id="spin-sound" src="spin.mp3"></audio>
+        <audio id="win-sound" src="win.mp3"></audio>
+        <audio id="bonus-sound" src="bonus.mp3"></audio>
+        <audio id="background-music" src="background-music.mp3" loop></audio>
+
+        <!-- Bonus Game Modal -->
+        <div id="bonus-game-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="bonus-game-title">
+            <div class="modal-content">
+                <h2 id="bonus-game-title">Bonus Game!</h2>
+                <p>Spin the wheel to win a prize!</p>
+                <!-- Bonus Game Content -->
+                <button id="spin-bonus-wheel">Spin Wheel</button>
+                <p id="bonus-game-message"></p>
+                <button id="close-bonus-game" aria-label="Close bonus game">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaderboard -->
+    <div id="leaderboard">
+        <h2>Leaderboard</h2>
+        <ul id="leaderboard-list"></ul>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
