@@ -68,7 +68,7 @@ const bonusSymbol = '🎰'; // Bonus game symbol
 let freeSpins = 0;
 
 // Base URL for API endpoints
-const BASE_URL = 'http://localhost:5000'; // Update this if your backend is hosted elsewhere
+const BASE_URL = 'https://slot-game-backend-e4c8d1bc617a.herokuapp.com'; // Your deployed backend URL
 
 registerButton.addEventListener('click', register);
 loginButton.addEventListener('click', login);
@@ -90,18 +90,6 @@ maxBetButton.addEventListener('click', setMaxBet);
 // Bonus Game Event Listeners
 spinBonusWheelButton.addEventListener('click', spinBonusWheel);
 closeBonusGameButton.addEventListener('click', closeBonusGameModal);
-
-chests.forEach(chest => chest.addEventListener('click', selectChest));
-closeBonusButton.addEventListener('click', closeBonusModal);
-
-// Keyboard Accessibility for Chests
-chests.forEach(chest => {
-    chest.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-            selectChest(event);
-        }
-    });
-});
 
 async function register() {
     const username = registerUsername.value.trim();
@@ -468,22 +456,6 @@ function spinBonusWheel() {
         bonusGameMessage.textContent = '😞 No prize this time.';
     }
 }
-
-function selectChest(event) {
-    // Existing chest selection logic
-}
-
-window.onclick = function(event) {
-    if (event.target == bonusModal) {
-        closeBonusModal();
-    }
-    if (event.target == settingsModal) {
-        closeSettingsModal();
-    }
-    if (event.target == bonusGameModal) {
-        closeBonusGameModal();
-    }
-};
 
 async function updateGameState() {
     try {
